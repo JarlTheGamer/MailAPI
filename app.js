@@ -1,5 +1,5 @@
 const nodemailer = require("nodemailer");
- 
+  
 export default async (req, res) => {
 
 const { firstName, lastName, email, message } = JSON.parse(req.body);
