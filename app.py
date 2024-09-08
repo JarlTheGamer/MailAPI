@@ -20,13 +20,13 @@ def send_email():
     # Configure SMTP server
     smtp_server = 'smtp.gmail.com'
     smtp_port = 587
-    smtp_user = os.getenv('EMAIL_USER')  # Je email uit omgevingsvariabelen
-    smtp_password = os.getenv('EMAIL_PASS')  # Je wachtwoord uit omgevingsvariabelen
+    smtp_user = 'frederickyxyzsubmissions@gmail.com'  # Je email uit omgevingsvariabelen
+    smtp_password = 'Jarl@200820'  # Je wachtwoord uit omgevingsvariabelen
 
     # Maak een emailbericht
     msg = MIMEMultipart()
     msg['From'] = email
-    msg['To'] = 'your-work-email@example.com'  # Je privé werk email
+    msg['To'] = 'frederickyxyz@gmail.com'  # Je privé werk email
     msg['Subject'] = f'Form submission from {name}'
 
     body = f'Name: {name}\nEmail: {email}\nMessage: {message}'
