@@ -1,3 +1,4 @@
+from flask import Flask, request, jsonify
 import smtplib
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
@@ -7,7 +8,15 @@ from dotenv import load_dotenv
 # Laad omgevingsvariabelen uit een .env bestand
 load_dotenv()
 
-def send_email(name, email, message):
+app = Flask(__name__)
+
+@app.route('/send_email', methods=['POST'])
+def send_email():
+    data = request.json
+    name = data.get('name')
+    email = data.get('email')
+    message = data.get('message')
+
     # Configure SMTP server
     smtp_server = 'smtp.gmail.com'
     smtp_port = 587
@@ -29,10 +38,9 @@ def send_email(name, email, message):
             server.starttls()
             server.login(smtp_user, smtp_password)
             server.send_message(msg)
-        print('Email sent successfully!')
+        return jsonify({'message': 'Email sent successfully!'}), 200
     except Exception as e:
-        print(f'Error sending email: {e}')
+        return jsonify({'message': f'Error sending email: {e}'}), 500
 
-# Voorbeeldgebruik
 if __name__ == '__main__':
-    send_email('John Doe', 'john.doe@example.com', 'Hello, this is a test message.')
+    app.run(debug=False, port=3000, host="0.0.0.0")
