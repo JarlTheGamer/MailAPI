@@ -1,4 +1,1 @@
-Flask==2.3.2
-python-dotenv==1.0.0
-secure-smtplib
-email-validator
+nodemailer
